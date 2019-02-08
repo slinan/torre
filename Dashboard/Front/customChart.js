@@ -1,8 +1,7 @@
-color1 = 'rgb(35, 137, 228, 1)'
-color2 = 'rgb(0, 107, 166, 1)'
-color3 = 'rgb(255, 188, 66, 1)'
-color4 = 'rgb(241, 143, 1, 1)'
-color5 = 'rgb(231, 50, 120, 1)'
+color1 = 'rgb(161,218,180)'
+color2 = 'rgb(65,182,196)'
+color3 = 'rgb(44,127,184)'
+color4 = 'rgb(37,52,148)'
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -11,7 +10,7 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["6:20", "6:30", "6:40", "6:50", "7:00", "7:10", "7:20"],
         datasets: [{
                 label: "US East Coast",
                 backgroundColor: color1,
@@ -25,6 +24,20 @@ var chart = new Chart(ctx, {
                 borderColor: color2,
                 fill: false,
                 data: [5, 15, 55, 25, 25, 34, 45],
+            },
+            {
+                label: "Asia Pacific",
+                backgroundColor: color3,
+                borderColor: color3,
+                fill: false,
+                data: [50, 150, 55, 255, 254, 342, 45],
+            },
+            {
+                label: "South America",
+                backgroundColor: color4,
+                borderColor: color4,
+                fill: false,
+                data: [23, 15, 23, 28, 44, 120, 22],
             }
         ]
     },
