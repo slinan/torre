@@ -39,10 +39,7 @@ def connectToMongo():
     connectionString = 'mongodb://'+user+':'+password+'@'+url+':'+port+'/'+dbName
     client = MongoClient(connectionString)
     db = client['performance']
-    post = {"author": "Mike",
-        "text": "My first blog post!",
-        "tags": ["mongodb", "python", "pymongo"],
-        "date": datetime.datetime.utcnow()}
+    post = {"Example information"}
     posts = db.posts
     post_id = posts.insert_one(post).inserted_id
     print('Done')
