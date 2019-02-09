@@ -2,8 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
-public class Job implements Serializable{
+public class Job implements Serializable {
 
 	/**
 	 * 
@@ -16,9 +17,9 @@ public class Job implements Serializable{
 	private String toMonth;
 	private String toYear;
 	private ArrayList<Person> peopleWithThisJob;
+	private Hashtable<String, Boolean> hashPeople;
 
-	public Job(String role, String fromMonth, String fromYear, String toMonth,
-			String toYear) {
+	public Job(String role, String fromMonth, String fromYear, String toMonth, String toYear) {
 		super();
 		this.role = role;
 		this.fromMonth = fromMonth;
@@ -26,6 +27,7 @@ public class Job implements Serializable{
 		this.toMonth = toMonth;
 		this.toYear = toYear;
 		peopleWithThisJob = new ArrayList<Person>();
+		hashPeople = new Hashtable<>();
 	}
 
 	public String getRole() {
@@ -75,12 +77,28 @@ public class Job implements Serializable{
 	public void setToYear(String toYear) {
 		this.toYear = toYear;
 	}
-	
-	public void addPerson(Person person) {
-		peopleWithThisJob.add(person);
+
+	public boolean addPerson(Person person) {
+		if (hashPeople.get(person.getPublicId()) == null) {
+			peopleWithThisJob.add(person);
+			hashPeople.put(person.getPublicId(), true);
+			if(peopleWithThisJob.size() > 1) {
+				System.out.println("Job with more than one");
+			}
+			return true;
+		}
+		return false;
 	}
-	
+
 	public ArrayList<Person> getPeopleWithThisJob() {
 		return peopleWithThisJob;
+	}
+
+	public ArrayList<String> getArrayIdPeople() {
+		ArrayList<String> people = new ArrayList<>();
+		peopleWithThisJob.forEach(p -> {
+			people.add(p.getPublicId());
+		});
+		return people;
 	}
 }

@@ -26,5 +26,7 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.code.gson:gson:2.8.5'
+    compile 'org.mongodb:mongodb-driver-sync:3.10.0'
+    
 }
 
