@@ -1,23 +1,31 @@
 package model;
 
-public class Job {
+import java.io.Serializable;
+import java.util.ArrayList;
 
+public class Job implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String role;
 	private Organization organization;
 	private String fromMonth;
 	private String fromYear;
 	private String toMonth;
 	private String toYear;
+	private ArrayList<Person> peopleWithThisJob;
 
-	public Job(String role, Organization organization, String fromMonth, String fromYear, String toMonth,
+	public Job(String role, String fromMonth, String fromYear, String toMonth,
 			String toYear) {
 		super();
 		this.role = role;
-		this.organization = organization;
 		this.fromMonth = fromMonth;
 		this.fromYear = fromYear;
 		this.toMonth = toMonth;
 		this.toYear = toYear;
+		peopleWithThisJob = new ArrayList<Person>();
 	}
 
 	public String getRole() {
@@ -67,5 +75,12 @@ public class Job {
 	public void setToYear(String toYear) {
 		this.toYear = toYear;
 	}
-
+	
+	public void addPerson(Person person) {
+		peopleWithThisJob.add(person);
+	}
+	
+	public ArrayList<Person> getPeopleWithThisJob() {
+		return peopleWithThisJob;
+	}
 }

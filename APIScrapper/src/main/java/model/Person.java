@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Person {
+public class Person implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String publicId;
 	private String name;
 	private String professionalheadline;
@@ -12,16 +17,15 @@ public class Person {
 	private ArrayList<Strength> strengths;
 	private ArrayList<Job> jobs;
 
-	public Person(String publicId, String name, String professionalheadline, String picture, double weight,
-			ArrayList<Strength> strengths, ArrayList<Job> jobs) {
+	public Person(String publicId, String name, String professionalheadline, String picture, double weight) {
 		super();
 		this.publicId = publicId;
 		this.name = name;
 		this.professionalheadline = professionalheadline;
 		this.picture = picture;
 		this.weight = weight;
-		this.strengths = strengths;
-		this.jobs = jobs;
+		this.strengths = new ArrayList<Strength>();
+		this.jobs =  new ArrayList<Job>();
 	}
 
 	public String getPublicId() {
@@ -68,16 +72,16 @@ public class Person {
 		return strengths;
 	}
 
-	public void setStrengths(ArrayList<Strength> strengths) {
-		this.strengths = strengths;
+	public void addStrenght(Strength strength) {
+		strengths.add(strength);
 	}
 
 	public ArrayList<Job> getJobs() {
 		return jobs;
 	}
 
-	public void setJobs(ArrayList<Job> jobs) {
-		this.jobs = jobs;
+	public void addJob(Job job) {
+		jobs.add(job);
 	}
 
 }

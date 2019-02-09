@@ -1,25 +1,25 @@
 package model;
 
-public class Strength {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-	private String id;
+public class Strength implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String name;
+	private ArrayList<Person> people;
 
-	public Strength(String id, String code, String name) {
+	public Strength(String code, String name) {
 		super();
-		this.id = id;
 		this.code = code;
 		this.name = name;
+		people = new ArrayList<Person>();
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -35,6 +35,11 @@ public class Strength {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public void addPerson(Person newPerson) {
+		people.add(newPerson);
 	}
 
 }
