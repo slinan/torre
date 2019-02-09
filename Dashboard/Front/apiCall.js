@@ -86,5 +86,5 @@ function calculateAverage(reading) {
 
 window.setInterval(function () {
     updateGraph()
-}, 30000);
+}, 60000);
 updateGraph()
