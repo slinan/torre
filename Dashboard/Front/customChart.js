@@ -12,7 +12,22 @@ var chart = new Chart(ctx, {
     data: { },
 
     // Configuration options go here
-    options: {}
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time in seconds'
+                  }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Hour'
+                  }
+            }]
+        }
+    }
 });
 
 function removeData() {
