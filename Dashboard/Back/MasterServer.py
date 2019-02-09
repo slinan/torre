@@ -6,9 +6,11 @@ import datetime
 import os
 import json
 import time
-
+from bson.json_util import dumps
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 user = os.environ["DB_USER"]
 password = os.environ["DB_PASSWORD"]
@@ -41,6 +43,31 @@ def calculeteAverage():
     print(response)
     return jsonify({'data':response})
 
+def updateDatabase():
+    now = datetime.datetime.utcnow()
+    average = {'s1':slave1.calculateAverage(), 
+    's2':slave2.calculateAverage(), 
+    's3':slave3.calculateAverage(), 
+    's4':slave4.calculateAverage(),
+    'year': now.year,
+    'day': now.day,
+    'month': now.month,
+    'hour': now.hour,
+    'minute': now.minute,
+    'date': now
+    }
+    insert = db.hours.insert_one(average)
+    return 'OK'
+
+def getLastRecords():
+    size = db.hours.count()
+    if size < 24:
+        size = 0
+    else:
+        size = size - 24
+    response = db.hours.find().skip(size)
+    return dumps(response)
+
 @app.route("/")
 def hello():
     return "Running Master"
@@ -51,13 +78,22 @@ def average():
 
 @app.route("/graphData")
 def graphData():
-    return calculeteAverage() 
+    return calculeteAverage()
 
+@app.route("/sendDB")
+def sendDB():
+    return updateDatabase()
+
+@app.route("/lastReadings")
+def lastRecs():
+    return getLastRecords() 
+
+updateDatabase()
 apiUrl = os.environ["API_URL"]
 slave1 = Slave(os.environ["SLAVE1_URL"], apiUrl, 'Virginia')
 slave2 = Slave(os.environ["SLAVE2_URL"], apiUrl, 'California')
 slave3 = Slave(os.environ["SLAVE3_URL"], apiUrl, 'London')
 slave4 = Slave(os.environ["SLAVE4_URL"], apiUrl, 'Tokio')
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(calculeteAverage, 'interval', minutes=10)
+job = scheduler.add_job(calculeteAverage, 'interval', minutes=30)
 scheduler.start()

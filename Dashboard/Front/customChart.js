@@ -9,39 +9,22 @@ var chart = new Chart(ctx, {
     type: 'line',
 
     // The data for our dataset
-    data: {
-        labels: ["6:20", "6:30", "6:40", "6:50", "7:00", "7:10", "7:20"],
-        datasets: [{
-                label: "US East Coast",
-                backgroundColor: color1,
-                borderColor: color1,
-                fill: false,
-                data: [0, 10, 5, 2, 20, 30, 45],
-            },
-            {
-                label: "US West Coast",
-                backgroundColor: color2,
-                borderColor: color2,
-                fill: false,
-                data: [5, 15, 55, 25, 25, 34, 45],
-            },
-            {
-                label: "Asia Pacific",
-                backgroundColor: color3,
-                borderColor: color3,
-                fill: false,
-                data: [50, 150, 55, 255, 254, 342, 45],
-            },
-            {
-                label: "South America",
-                backgroundColor: color4,
-                borderColor: color4,
-                fill: false,
-                data: [23, 15, 23, 28, 44, 120, 22],
-            }
-        ]
-    },
+    data: { },
 
     // Configuration options go here
     options: {}
 });
+
+function removeData() {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+function addData(labels, datasets) {
+    chart.data.labels = labels;
+    chart.data.datasets = datasets;
+    chart.update();
+}
