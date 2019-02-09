@@ -43,21 +43,23 @@ def calculeteAverage():
     print(response)
     return jsonify({'data':response})
 
-def updateDatabase():
-    now = datetime.datetime.utcnow()
-    average = {'s1':slave1.calculateAverage(), 
-    's2':slave2.calculateAverage(), 
-    's3':slave3.calculateAverage(), 
-    's4':slave4.calculateAverage(),
-    'year': now.year,
-    'day': now.day,
-    'month': now.month,
-    'hour': now.hour,
-    'minute': now.minute,
-    'date': now
-    }
-    insert = db.hours.insert_one(average)
-    return 'OK'
+def updateDatabase(app):
+    print('update')
+    with app.app_context():
+        now = datetime.datetime.utcnow()
+        average = {'s1':slave1.calculateAverage(), 
+        's2':slave2.calculateAverage(), 
+        's3':slave3.calculateAverage(), 
+        's4':slave4.calculateAverage(),
+        'year': now.year,
+        'day': now.day,
+        'month': now.month,
+        'hour': now.hour,
+        'minute': now.minute,
+        'date': now
+        }
+        insert = db.hours.insert_one(average)
+        return 'OK'
 
 def getLastRecords():
     size = db.hours.count()
@@ -82,18 +84,20 @@ def graphData():
 
 @app.route("/sendDB")
 def sendDB():
-    return updateDatabase()
+    return updateDatabase(app)
 
 @app.route("/lastReadings")
 def lastRecs():
-    return getLastRecords() 
+    return getLastRecords()
+
+def executeProcess():
+    updateDatabase(app)
 
 apiUrl = os.environ["API_URL"]
 slave1 = Slave(os.environ["SLAVE1_URL"], apiUrl, 'Virginia')
 slave2 = Slave(os.environ["SLAVE2_URL"], apiUrl, 'California')
 slave3 = Slave(os.environ["SLAVE3_URL"], apiUrl, 'London')
 slave4 = Slave(os.environ["SLAVE4_URL"], apiUrl, 'Tokio')
-updateDatabase()
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(calculeteAverage, 'interval', minutes=30)
+job = scheduler.add_job(executeProcess, 'interval', minutes=1)
 scheduler.start()
