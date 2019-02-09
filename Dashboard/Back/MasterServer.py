@@ -88,12 +88,12 @@ def sendDB():
 def lastRecs():
     return getLastRecords() 
 
-updateDatabase()
 apiUrl = os.environ["API_URL"]
 slave1 = Slave(os.environ["SLAVE1_URL"], apiUrl, 'Virginia')
 slave2 = Slave(os.environ["SLAVE2_URL"], apiUrl, 'California')
 slave3 = Slave(os.environ["SLAVE3_URL"], apiUrl, 'London')
 slave4 = Slave(os.environ["SLAVE4_URL"], apiUrl, 'Tokio')
+updateDatabase()
 scheduler = BackgroundScheduler()
 job = scheduler.add_job(calculeteAverage, 'interval', minutes=30)
 scheduler.start()
