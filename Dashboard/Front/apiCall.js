@@ -44,25 +44,25 @@ function updateGraph() {
             backgroundColor: color1,
             borderColor: color1,
             fill: false,
-            data: dataS1,
+            data: dataS1.reverse(),
         }, {
             label: "California",
             backgroundColor: color2,
             borderColor: color2,
             fill: false,
-            data: dataS2,
+            data: dataS2.reverse(),
         }, {
             label: "London",
             backgroundColor: color3,
             borderColor: color3,
             fill: false,
-            data: dataS3,
+            data: dataS3.reverse(),
         }, {
             label: "Tokio",
             backgroundColor: color4,
             borderColor: color4,
             fill: false,
-            data: dataS4,
+            data: dataS4.reverse(),
         }]
 
         addData(labels.reverse(), datasets.reverse());
