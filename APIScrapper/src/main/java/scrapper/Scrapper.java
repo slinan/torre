@@ -270,6 +270,6 @@ public class Scrapper implements Serializable {
 	}
 
 	public static void main(String[] args) {
-		Scrapper mainClass = new Scrapper();
+		//Scrapper mainClass = new Scrapper();
 	}
 }
