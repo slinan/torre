@@ -154,3 +154,11 @@ html {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; } 
   }
+
+  .media {
+    margin-bottom: 10px;
+  }
+
+  .big-card{
+    margin-bottom: 15px;
+  }

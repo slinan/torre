@@ -29,46 +29,49 @@
     </div>
 
     <div class="container">
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4" id="performance">Paths4Jobs</h1>
-            <p class="lead">Find the path that others have taken to get a job</p>
-            <p>If you are finding your ideal job, you will find out how other people have achieved that. If you are a
-                recruiter, you could see where to find the candidates for a specific position</p>
+        <div class="jumbotron">
 
-            <div class="sk-fading-circle" id="loader1">
-                <div class="sk-circle1 sk-circle"></div>
-                <div class="sk-circle2 sk-circle"></div>
-                <div class="sk-circle3 sk-circle"></div>
-                <div class="sk-circle4 sk-circle"></div>
-                <div class="sk-circle5 sk-circle"></div>
-                <div class="sk-circle6 sk-circle"></div>
-                <div class="sk-circle7 sk-circle"></div>
-                <div class="sk-circle8 sk-circle"></div>
-                <div class="sk-circle9 sk-circle"></div>
-                <div class="sk-circle10 sk-circle"></div>
-                <div class="sk-circle11 sk-circle"></div>
-                <div class="sk-circle12 sk-circle"></div>
-            </div>
-            <div style="display: none;" id="mainDiv">
-                <select class="form-control form-control-lg" id="select">
-                    <option value="none">Choose the job</option>
-                </select>
-                <br>
-                <button type="button" onclick="getPeople();" class="btn btn-primary btn-lg btn-block">Show me the path</button>
+            <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                <h1 class="display-4" id="performance">Paths4Jobs</h1>
+                <p class="lead">Find the path that others have taken to get a job</p>
+                <p>If you are finding your ideal job, you will find out how other people have achieved that. If you are
+                    a
+                    recruiter, you could see where to find the candidates for a specific position</p>
+
+                <div class="sk-fading-circle" id="loader1">
+                    <div class="sk-circle1 sk-circle"></div>
+                    <div class="sk-circle2 sk-circle"></div>
+                    <div class="sk-circle3 sk-circle"></div>
+                    <div class="sk-circle4 sk-circle"></div>
+                    <div class="sk-circle5 sk-circle"></div>
+                    <div class="sk-circle6 sk-circle"></div>
+                    <div class="sk-circle7 sk-circle"></div>
+                    <div class="sk-circle8 sk-circle"></div>
+                    <div class="sk-circle9 sk-circle"></div>
+                    <div class="sk-circle10 sk-circle"></div>
+                    <div class="sk-circle11 sk-circle"></div>
+                    <div class="sk-circle12 sk-circle"></div>
+                </div>
+                <div style="display: none;" id="mainDiv">
+                    <select class="form-control form-control-lg" id="select">
+                        <option value="none">Choose the job</option>
+                    </select>
+                    <br>
+                    <button type="button" onclick="getPeople();" class="btn btn-primary btn-lg btn-block">Search</button>
+                </div>
             </div>
         </div>
 
         <div id="part2" style="display: none;">
-            <h2 id="jobTitle"></h2>
             <div class="mb-3">
                 <ul class="list-unstyled" id="listPeople">
                 </ul>
             </div>
             <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                <h3 class="display-4" id="performance">These are their paths</h3>
+                <h3 class="display-4" id="jobTitle"> </h3>
             </div>
 
-            <div class="row" id="paths">
+            <div id="paths">
             </div>
         </div>
 
